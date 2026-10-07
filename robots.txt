@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://theocanship.com/sitemap.xml

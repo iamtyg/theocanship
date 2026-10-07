@@ -7,8 +7,20 @@
   <meta name="description" content="Theo is an AI media team that writes, edits and ships short-form video, so the thing you built actually gets seen.">
   <meta property="og:title" content="Theo can ship.">
   <meta property="og:description" content="An AI media team that writes, edits and ships short-form video.">
-  <meta property="og:image" content="https://theocanship.com/assets/reel-excuses.jpg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Theo">
+  <meta property="og:image" content="https://theocanship.com/assets/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Theo can ship. An AI media team for short-form video.">
   <meta property="og:url" content="https://theocanship.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Theo can ship.">
+  <meta name="twitter:description" content="An AI media team that writes, edits and ships short-form video.">
+  <meta name="twitter:image" content="https://theocanship.com/assets/og.png">
+  <link rel="canonical" href="https://theocanship.com/">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <meta name="theme-color" content="#090b1a">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23090b1a'/%3E%3Ctext x='32' y='47' font-family='Georgia,serif' font-style='italic' font-size='44' text-anchor='middle' fill='%23ffb35c'%3Et%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,9 +123,9 @@
       box-shadow: 0 50px 120px -30px rgba(0,0,0,.8), 0 0 0 10px rgba(255,255,255,.025);
       transform: rotate(2.5deg);
     }
-    .phone img { width: 100%; height: 100%; object-fit: cover; }
+    .phone img, .phone video { width: 100%; height: 100%; object-fit: cover; display: block; background: #0e1230; }
     .phone .progress { position: absolute; left: 14px; right: 14px; top: 14px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.22); overflow: hidden; }
-    .phone .progress i { display: block; height: 100%; width: 0; background: #fff; animation: fill 9s linear infinite; }
+    .phone .progress i { display: block; height: 100%; width: 0; background: #fff; }
     .phone .meta { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; font-family: var(--script); font-size: 12px; color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.6); }
     @keyframes fill { to { width: 100%; } }
     .sticker {
@@ -164,6 +176,8 @@
     .reels-row { display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; align-items: end; }
     .reels-note { font-family: var(--script); color: var(--muted); font-size: 15px; line-height: 1.9; border-left: 2px solid var(--lamp); padding-left: 22px; margin-bottom: 30px; }
     .reels-note b { color: var(--text); }
+    .reels-note .note-head { display: block; color: var(--lamp); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 10px; }
+    .example-note { font-size: 12px; color: var(--dim); margin: 14px 0 0; letter-spacing: .02em; }
 
     /* ---------- three acts ---------- */
     .act { display: grid; grid-template-columns: 180px 1fr 1.1fr; gap: 40px; padding: 54px 0; border-top: 1px solid var(--rule); align-items: start; }
@@ -203,6 +217,22 @@
     .credits .gap { height: 26px; }
     .credits h2 { margin-bottom: 18px; }
     .credits .intro { margin: 0 auto 40px; }
+    .waitlist { max-width: 560px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 12px; text-align: left; }
+    .waitlist input[type=email], .waitlist input[type=text] {
+      width: 100%; font: 400 17px/1.4 var(--sans); color: var(--text);
+      background: rgba(255,255,255,.04); border: 1px solid var(--rule); border-radius: 14px;
+      padding: 15px 18px; outline: none; transition: border-color .2s ease, background .2s ease;
+    }
+    .waitlist input::placeholder { color: var(--dim); }
+    .waitlist input:focus { border-color: var(--lamp); background: rgba(255,255,255,.06); }
+    .waitlist .btn { border: 0; cursor: pointer; justify-self: center; margin-top: 8px; font-family: var(--sans); }
+    .waitlist .btn[disabled] { opacity: .6; cursor: default; }
+    .waitlist .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    .wl-msg { text-align: center; font-size: 14px; color: var(--lamp); min-height: 1.4em; margin: 6px 0 0; }
+    .wl-msg.err { color: var(--flag); }
+    .or { font-size: 13px; color: var(--dim); margin: 18px 0 0; }
+    .or a { color: var(--muted); }
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
     footer { border-top: 1px solid var(--rule); padding: 26px 0; font-family: var(--script); font-size: 12px; color: var(--dim); letter-spacing: .06em; }
     footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -266,11 +296,11 @@
       </div>
       <div class="phone-wrap">
         <div class="phone">
-          <img src="assets/reel-excuses.jpg" alt="A vertical reel frame: Theo, a low-poly 3D character, says '...Then I'm out of excuses.'" width="540" height="960">
-          <div class="progress"><i></i></div>
-          <div class="meta"><span>reel 07 / 11</span><span>0:58</span></div>
+          <video id="loop" src="assets/theo-loop.mp4" poster="assets/theo-loop-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Clips from Theo's original 3D animated series: Theo, a low-poly character, says 'I said I'd launch before thirty' and '...Then I'm out of excuses.'"></video>
+          <div class="progress"><i id="loopbar"></i></div>
+          <div class="meta"><span>original series</span><span>ep. 02&ndash;03</span></div>
         </div>
-        <div class="sticker">rendered in 61s</div>
+        <div class="sticker">avg. render &asymp; 59s</div>
       </div>
     </div>
   </header>
@@ -318,19 +348,21 @@
           <div class="playhead"></div>
         </div>
       </div>
+      <p class="example-note script reveal">Illustrative example of a single run. Chapter names and clip positions are for demonstration.</p>
 
       <div class="reels-row">
         <div class="reels reveal">
-          <figure class="reel"><div class="frame"><img src="assets/reel-knows.jpg" alt="Reel frame: 'When did I stop being the one who knows?'" loading="lazy" width="540" height="960"></div><figcaption><b>reel 03</b><span>0:57</span></figcaption></figure>
-          <figure class="reel"><div class="frame"><img src="assets/reel-close.jpg" alt="Reel frame: a close-up of Theo" loading="lazy" width="540" height="960"></div><figcaption><b>reel 05</b><span>1:02</span></figcaption></figure>
-          <figure class="reel"><div class="frame"><img src="assets/reel-excuses.jpg" alt="Reel frame: '...Then I'm out of excuses.'" loading="lazy" width="540" height="960"></div><figcaption><b>reel 07</b><span>0:58</span></figcaption></figure>
+          <figure class="reel"><div class="frame"><img src="assets/reel-knows.jpg" alt="Reel frame: 'When did I stop being the one who knows?'" loading="lazy" width="540" height="960"></div><figcaption><b>ep. 02</b><span>0:58</span></figcaption></figure>
+          <figure class="reel"><div class="frame"><img src="assets/reel-close.jpg" alt="Reel frame: a close-up of Theo" loading="lazy" width="540" height="960"></div><figcaption><b>series still</b><span>3D</span></figcaption></figure>
+          <figure class="reel"><div class="frame"><img src="assets/reel-excuses.jpg" alt="Reel frame: '...Then I'm out of excuses.'" loading="lazy" width="540" height="960"></div><figcaption><b>ep. 03</b><span>0:58</span></figcaption></figure>
         </div>
-        <p class="reels-note script reveal">
-          <b>Source:</b> one long-form video<br>
-          <b>Editor time:</b> zero<br>
-          <b>Render:</b> about a minute per reel<br>
-          <b>Flagged before posting:</b> 1
-        </p>
+        <div class="reels-note script reveal">
+          <span class="note-head">From our production logs</span>
+          <b>Long-form sources processed:</b> 92<br>
+          <b>Reels rendered:</b> 155 logged<br>
+          <b>Average render:</b> ~59 s per reel<br>
+          <b>Risk check:</b> every clip, before posting
+        </div>
       </div>
     </div>
   </section>
@@ -375,7 +407,7 @@
       <div class="frame reveal"><img src="assets/reel-knows.jpg" alt="Frame from Theo's original 3D animated series" loading="lazy" width="540" height="960"></div>
       <div class="reveal">
         <p class="label">Scene 3 &mdash; No footage? No problem.</p>
-        <blockquote>&ldquo;When did I stop being the one who knows?&rdquo;<cite>&mdash; Theo, episode 04</cite></blockquote>
+        <blockquote>&ldquo;When did I stop being the one who knows?&rdquo;<cite>&mdash; Theo, episode 02 &middot; &ldquo;Second Opinion&rdquo;</cite></blockquote>
         <p class="intro">When there's nothing to cut, Theo writes the show. Our original 3D animated series was made this way: <strong style="color:var(--text);font-weight:500">seven episodes</strong>, all scripted against a story bible, then voiced, scored and rendered.</p>
       </div>
     </div>
@@ -417,7 +449,19 @@
       <p class="label reveal">Next episode</p>
       <h2 class="reveal">Yours.</h2>
       <p class="intro reveal">We're onboarding a small group of creators and teams. Tell us what you make, and we'll show you what Theo can ship.</p>
-      <a class="btn reveal" href="mailto:hello@theocanship.com?subject=Theo%20early%20access">hello@theocanship.com</a>
+      <form id="waitlist" class="waitlist reveal" action="https://formsubmit.co/hello@theocanship.com" method="POST">
+        <label class="sr" for="wl-email">Email</label>
+        <input id="wl-email" type="email" name="email" placeholder="you@studio.com" required autocomplete="email">
+        <label class="sr" for="wl-what">What do you make?</label>
+        <input id="wl-what" type="text" name="what_they_make" placeholder="What do you make? (podcast, streams, product…)" maxlength="200">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Theo early access">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <button class="btn" type="submit">Join the waitlist</button>
+        <p class="wl-msg script" id="wl-msg" role="status" aria-live="polite"></p>
+      </form>
+      <p class="or script reveal">We only use your email to contact you about Theo. Or write to <a href="mailto:hello@theocanship.com?subject=Theo%20early%20access">hello@theocanship.com</a></p>
     </div>
   </section>
 
@@ -441,6 +485,34 @@
         tc.textContent = '03:' + pad(min % 60) + ':' + pad(sec) + ':' + pad(f);
       }
       if (!reduce) setInterval(tick, 40);
+
+      // hero video: progress bar follows playback; respect reduced motion
+      var vid = document.getElementById('loop'), vbar = document.getElementById('loopbar');
+      if (reduce) { vid.removeAttribute('autoplay'); vid.pause(); }
+      (function track() {
+        if (vid.duration) vbar.style.width = (vid.currentTime / vid.duration * 100).toFixed(2) + '%';
+        requestAnimationFrame(track);
+      })();
+
+      // waitlist: submit in place; falls back to a normal POST without JS
+      var form = document.getElementById('waitlist'), msg = document.getElementById('wl-msg');
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var btn = form.querySelector('button');
+        btn.disabled = true; msg.className = 'wl-msg script'; msg.textContent = 'Sending…';
+        fetch('https://formsubmit.co/ajax/hello@theocanship.com', {
+          method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form)
+        }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (res) {
+            if (!res.ok || String(res.j.success) === 'false') throw new Error(res.j.message || 'failed');
+            form.reset(); msg.textContent = "You're on the list. We'll be in touch.";
+          })
+          .catch(function () {
+            msg.className = 'wl-msg script err';
+            msg.innerHTML = 'Something went wrong. Please email <a href="mailto:hello@theocanship.com">hello@theocanship.com</a>.';
+          })
+          .then(function () { btn.disabled = false; });
+      });
 
       // solid top bar after the cold open
       var bar = document.querySelector('.bar');
